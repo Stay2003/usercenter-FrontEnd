@@ -118,7 +118,6 @@ const Register: React.FC = () => {
     try {
       // 登录
       const user = await login({ ...values, type });
-      const msg = await login({ ...values, type });
       if (user) {
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
@@ -193,15 +192,8 @@ const Register: React.FC = () => {
               {
                 key: 'account',
                 label: intl.formatMessage({
-                  id: 'pages.login.accountLogin.tab',
-                  defaultMessage: '账户密码登录',
-                }),
-              },
-              {
-                key: 'mobile',
-                label: intl.formatMessage({
-                  id: 'pages.login.phoneLogin.tab',
-                  defaultMessage: '手机号登录',
+                  id: 'pages.login.accountRegister.tab',
+                  defaultMessage: '账号密码注册',
                 }),
               },
             ]}
@@ -257,6 +249,33 @@ const Register: React.FC = () => {
                       <FormattedMessage
                         id="pages.login.userPassword.required"
                         defaultMessage="请输入密码！"
+                      />
+                    ),
+                  },
+                  {
+                    min: 8,
+                    type: 'string',
+                    message: '密码长度不能小于8位！',
+                  }
+                ]}
+              />
+              <ProFormText.Password
+                name="checkPassword"
+                fieldProps={{
+                  size: 'large',
+                  prefix: <LockOutlined />,
+                }}
+                placeholder={intl.formatMessage({
+                  id: 'pages.login.checkPassword.placeholder',
+                  defaultMessage: '确认密码:',
+                })}
+                rules={[
+                  {
+                    required: true,
+                    message: (
+                      <FormattedMessage
+                        id="pages.login.checkPassword.required"
+                        defaultMessage="请再次输入密码！"
                       />
                     ),
                   },
