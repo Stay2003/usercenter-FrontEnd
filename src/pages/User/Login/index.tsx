@@ -16,11 +16,12 @@ import {
   ProFormText,
 } from '@ant-design/pro-components';
 import { FormattedMessage, history, SelectLang, useIntl, useModel, Helmet } from '@umijs/max';
-import { Alert, message, Tabs } from 'antd';
+import {Alert, Button, message, Tabs} from 'antd';
 import Settings from '../../../../config/defaultSettings';
 import React, { useState } from 'react';
 import { flushSync } from 'react-dom';
 import { createStyles } from 'antd-style';
+import {style} from "@umijs/bundler-esbuild/dist/plugins/style";
 
 const useStyles = createStyles(({ token }) => {
   return {
@@ -357,19 +358,19 @@ const Login: React.FC = () => {
               marginBottom: 24,
             }}
           >
-            <ProFormCheckbox noStyle name="autoLogin">
-              <FormattedMessage id="pages.login.rememberMe" defaultMessage="自动登录" />
-            </ProFormCheckbox>
             <a
+              onClick={() => {
+                history.push('/user/register');
+              }}
               style={{
                 float: 'right',
               }}
             >
-              <FormattedMessage id="pages.login.forgotuserPassword" defaultMessage="忘记密码" />
+              <FormattedMessage id="pages.login.gotoRegister" defaultMessage="去注册页面" />
             </a>
           </div>
         </LoginForm>
-      </div>
+       </div>
       <Footer />
     </div>
   );
